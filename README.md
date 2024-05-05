@@ -16,3 +16,24 @@ Tests = Alle acceptatiecriteria moet terug komen. Technishe tests van edges. Uit
 Retro = Bespreken wat goed en slecht ging en hoe kan het beter. Je moet meer de diepte in.
 Presentatie/oplevering = Niet te veel bezig zijn met je laptop maar echt aan de persoon. Niet te veel op de foutmelding gaan. Presenteer het opgeleverde werk.
 Je moet later ook code vertellen ook van andere. Ook vertellen stel als je meer tijd had.
+
+
+
+
+
+om rollen aan te maken
+
+Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable();
+            $table->enum('role', ['Admin', 'User', 'Finance', 'Sales', 'Maintenance', 'Inventory', 'Customer', 'Headmaintenance'])->default('User');
+            $table->integer('company_id')->references('id')->on('companies')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+
+in de authentication controller
